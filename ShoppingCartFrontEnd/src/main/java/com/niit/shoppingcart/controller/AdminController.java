@@ -62,7 +62,7 @@ public class AdminController {
 		return mv;
 	}
 	
-	@RequestMapping("/manageProducts")
+	/*@RequestMapping("/manageProducts")
 	public ModelAndView manageProducts()
 	{
 		log.debug("Starting of the method manageProducts");
@@ -73,8 +73,12 @@ public class AdminController {
 		
 		mv.addObject("productList", productDAO.list());
 		mv.addObject("product", product);
+		mv.addObject("category",category);
+		mv.addObject("categoryList",categoryDAO.list());
+		mv.addObject("supplier",supplier);
+		mv.addObject("supplierList",supplierDAO.list());
 		
 		log.debug("Ending of the method manageProducts");
 		return mv;
-	}
+	}*/
 }

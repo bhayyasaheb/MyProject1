@@ -71,14 +71,14 @@ public class CategoryTestCase {
 		assertEquals("deleteCategoryTestCase", true, flag);
 	}
 	
-	//@Test
+	@Test
 	public void getCategoryByIdTestCase(){
 		
-		category =categoryDAO.getCategoryById("C333");
+		category =categoryDAO.getCategoryById("C555");
 		assertEquals(category.getClass().getName(), category.getClass().getName());
 	}
 	
-	//@Test
+	@Test
 	public void getCategoryByNameTestcase(){
 		
 		category = categoryDAO.getCategoryByName("Laptop");
@@ -89,7 +89,7 @@ public class CategoryTestCase {
 	public void getAllCategoryTestCase(){
 		
 		List<Category> categories = categoryDAO.list();
-		assertEquals(4, categories.size());
+		assertEquals(7, categories.size());
 	}
 }
 

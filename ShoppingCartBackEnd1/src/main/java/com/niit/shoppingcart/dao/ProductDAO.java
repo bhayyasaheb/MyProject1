@@ -1,3 +1,37 @@
+/*package com.niit.shoppingcart.dao;
+
+import java.util.List;
+
+import com.niit.shoppingcart.domain.Product;
+
+public interface ProductDAO {
+
+	Product get(int productId);
+
+	List<Product> list();
+
+	boolean add(Product product);
+
+	boolean update(Product product);
+
+	boolean delete(Product product);
+
+	// get all product based on particular category
+	public List<Product> getAllProductByCategoryID(String Id);
+
+	// get all Product based on particular supplier
+	public List<Product> getAllProductBySupplierID(String Id);
+
+	// business methods
+
+	List<Product> listActiveProducts();
+
+	List<Product> listActiveProductsByCategory(String categoryId);
+
+	List<Product> getLatestActiveProducts(int count);
+}
+*/
+
 package com.niit.shoppingcart.dao;
 
 import java.util.List;
@@ -8,28 +42,28 @@ public interface ProductDAO {
 
 	// create Product
 	public boolean save(Product product);
-	
+
 	// update Product
 	public boolean update(Product product);
-	
+
 	// delete Product by id
 	public boolean delete(String id);
-	
+
 	// delete Product by Product
 	public boolean delete(Product product);
-	
+
 	// get Product by id
 	public Product getProductById(String id);
-	
-	//get Product by name
+
+	// get Product by name
 	public Product getProductByName(String name);
-	
+
 	// get all the Product
 	public List<Product> list();
-	
+
 	// get all product based on particular category
 	public List<Product> getAllProductByCategoryID(String Id);
-	
+
 	// get all Product based on particular supplier
 	public List<Product> getAllProductBySupplierID(String Id);
 
