@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>	
 <!DOCTYPE html>
 <html>
 <style>
@@ -106,9 +108,11 @@ button {
 
 <div id="id01" class="modal">
   <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
-  <form class="modal-content animate" action="">
+  <form class="modal-content animate" commandName="user"  action="signUp" method="post">
     <div class="container">
-    
+    	<%-- <c:url var="addAction" value="/signUp"></c:url>
+    	<sf:form commandName="signUp" action="${addAction}" method="POST"/> --%>
+  
        <label><b> User Id</b></label>
       <input type="text" placeholder="Enter id" name="id">
       

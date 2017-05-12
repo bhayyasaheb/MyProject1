@@ -1,10 +1,14 @@
 package com.niit.shoppingcart.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -18,6 +22,7 @@ public class UserController {
 
 	private static Logger log = LoggerFactory.getLogger(UserController.class);
 	
+	@Autowired HttpSession session;
 	@Autowired
 	UserDAO userDAO;
 
@@ -82,17 +87,57 @@ public class UserController {
 	// update user
 	// getAllUsers
 	
-	/*@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String addUser(@ModelAttribute("from-reg") User user, Model model) {
-		user.setRole("ROLE_USER");
+	@RequestMapping(value="/signUp", method=RequestMethod.POST)
+	public ModelAndView addUser(@ModelAttribute("user") User user)
+	{
+		ModelAndView mv = new ModelAndView("Home");
+		user.setRole("User");
+		try {	
+				userDAO.save(user);
+				mv.addObject("message","Successfully Registered");
+			
+		} catch (Exception e) {
+			mv.addObject("message","You Not able to Register this User Id All ready in Use");
+			e.printStackTrace();
+			// TODO: handle exception
+		}
+		
+		
+		return mv;
+		
+	}
+	
+	@RequestMapping("/logout")
+	public ModelAndView logout() {
+		log.debug("Starting of the method logout");
+		ModelAndView mv = new ModelAndView("forward:/");
+		session.invalidate(); // will remove the attributes which are added
+								// session
+		session.setAttribute("category", category);
+		session.setAttribute("categoryList", categoryDAO.list());
+
+		mv.addObject("logoutMessage", "You successfully logged out");
+		mv.addObject("loggedOut", "true");
+		
+		log.debug("Ending of the method logout");
+		return mv;
+	}
+
+
+	
+	//@RequestMapping(value = "/signUp", method = RequestMethod.POST)
+	/*public String addUser(@ModelAttribute("form-reg") User user, Model model) {
+	
+		user.setRole("User");
+		System.out.println("Hello");
 		if (userDAO.save(user) == true) {
 
-			model.addAttribute("msg", "Successfully registred");
+			model.addAttribute("message", "Successfully registred");
 			model.addAttribute("registred", "true");
 		} else {
-			model.addAttribute("msg", "not able to register");
+			model.addAttribute("message", "not able to register");
 		}
-		return "/home";
+		return "Home";
 
 	}*/
 

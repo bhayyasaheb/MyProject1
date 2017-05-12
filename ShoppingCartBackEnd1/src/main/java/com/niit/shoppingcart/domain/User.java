@@ -22,8 +22,8 @@ public class User {
 	@NotEmpty(message="user name should not be empty")
 	private String name;
 
-	@Min(5)
-	@Max(10)
+	//@Min(5)
+	//@Max(10)
 	private String password;
 
 	private String role;
