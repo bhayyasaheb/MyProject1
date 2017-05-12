@@ -109,8 +109,8 @@ button {
   <form class="modal-content animate" action="">
     <div class="container">
     
-      <!--  <label><b>Id</b></label>
-      <input type="text" placeholder="Enter id" name="id" disabled = "true"> -->
+       <label><b> User Id</b></label>
+      <input type="text" placeholder="Enter id" name="id">
       
       <label><b>Enter Name</b></label>
       <input type="text" placeholder="Enter Name" name="name" required>
@@ -121,8 +121,8 @@ button {
 	  <label><b>Enter Mobile No</b></label>
       <input type="tel" placeholder="Enter Mobile No" name="contact" required>
       
-      <label><b>Role</b></label>
-      <input type="text" placeholder="Enter Role" name="role" required>
+      <!-- <label><b>Role</b></label>
+      <input type="text" placeholder="Enter Role" name="role" required> -->
 
       <label><b>Enter Mail Id</b></label>
       <input type="email" placeholder="Enter Email Id" name="mail" required>
@@ -131,7 +131,7 @@ button {
 
       <div class="clearfix">
         <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-        <button type="submit" class="signupbtn">Sign Up</button>
+        <button type="submit" class="signupbtn" value="signUp">Sign Up</button>
       </div>
     </div>
   </form>

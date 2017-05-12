@@ -81,6 +81,20 @@ public class UserController {
 	// create user
 	// update user
 	// getAllUsers
+	
+	/*@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public String addUser(@ModelAttribute("from-reg") User user, Model model) {
+		user.setRole("ROLE_USER");
+		if (userDAO.save(user) == true) {
+
+			model.addAttribute("msg", "Successfully registred");
+			model.addAttribute("registred", "true");
+		} else {
+			model.addAttribute("msg", "not able to register");
+		}
+		return "/home";
+
+	}*/
 
 	
 }

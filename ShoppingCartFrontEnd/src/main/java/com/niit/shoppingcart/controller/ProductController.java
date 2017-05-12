@@ -1,7 +1,5 @@
 package com.niit.shoppingcart.controller;
 
-import javax.servlet.http.HttpSession;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +30,7 @@ public class ProductController {
 	
 	private static Logger log = LoggerFactory.getLogger(ProductController.class);
 
-	@Autowired HttpSession session;
+	//@Autowired HttpSession session;
 	
 	@Autowired Product product;
 	
@@ -53,7 +51,8 @@ public class ProductController {
 		//private String path = "resources/imges/";
 	
 	// setting path to store images
-	  private String path   ="G://MyProject//ShoppingCartFrontEnd//src//main/webapp//resources//images";
+	 // private String path   ="G://MyProject//ShoppingCartFrontEnd//src//main/webapp//resources//images";
+	  private String path   = "G://SBK LaptopDeal//SBKLaptopDeal//ShoppingCartFrontEnd//src//main//webapp//resources//images";
 		
 	  // get the path where you downloaded tomcat
 	  //E:\Software\Tomcat\apache-tomcat-9.0.0.M18-windows-x64
@@ -98,6 +97,10 @@ public class ProductController {
 			return "Home";
 		}
 	  
+	 
+	  
+	  
+	  
 	  // For add and Update Product Both
 	  
 	  @RequestMapping(value="/manage_product_add", method=RequestMethod.POST)
@@ -105,9 +108,10 @@ public class ProductController {
 	  {
 		  log.debug("Starting of method addProduct");
 		  
-		  Category category = categoryDAO.getCategoryByName(product.getCategory().getName());
+		  Category category = categoryDAO.getCategoryById(product.getCategory().getName());
 		  
-		  Supplier supplier = supplierDAO.getSupplierByName(product.getSupplier().getName());
+		  Supplier supplier = supplierDAO.getSupplierById(product.getSupplier().getName());
+		  
 		  
 		  product.setCategory(category);
 		  product.setSupplier(supplier);
@@ -117,22 +121,58 @@ public class ProductController {
 		  
 		  FileUtil.upload(path, file, product.getId() + ".jpg");
 		  
-		  productDAO.save(product);
+		  
+		
+			  // create  new the product
+			  productDAO.save(product);
+		  
+		  
+		  
+			  // update the product
+			  productDAO.update(product);
+		  
+		  
 		  
 		  model.addAttribute("isAdminClickedProducts","true");
 		  model.addAttribute("isAdmin","true");
 		  
-		  model.addAttribute("productList",this.productDAO.list());
-		  model.addAttribute("product",new Product());
+		  model.addAttribute("productList",productDAO.list());
+		  model.addAttribute("product",product);
 		  
-		  model.addAttribute("categoryList",this.categoryDAO.list());
-		  model.addAttribute("category", new Category());
+		  model.addAttribute("categoryList",categoryDAO.list());
+		  model.addAttribute("category",category);
+		  
+		  model.addAttribute("supplierList",supplierDAO.list());
+		  model.addAttribute("supplier",supplier);
 		  
 		  log.debug("Ending of method add Product");
 		  
 		  return "Home";
 		  
 	  }
+	  
+	  // update the product
+	/*  @RequestMapping(value="manage_product_update", method=RequestMethod.POST)
+	  public String updateProduct(@ModelAttribute("product") Product product, @RequestParam("image") MultipartFile file, Model model)
+	  {
+		  log.debug("Starting of the method update Product");
+		  Category category = categoryDAO.getCategoryById(product.getCategory().getName());
+		  
+		  Supplier supplier = supplierDAO.getSupplierById(product.getSupplier().getName());
+		  
+		  
+		  product.setCategory(category);
+		  product.setSupplier(supplier);
+		  
+		  product.setCategory_id(category.getId());
+		  product.setSupplier_id(supplier.getId());
+		  
+		  FileUtil.upload(path, file, product.getId() + ".jpg");
+		  
+		  productDAO.update(product);
+		  
+		  return "Home";
+	  }*/
 
 	  // Delete Product
 	  @RequestMapping("/manage_product_delete/{id}")

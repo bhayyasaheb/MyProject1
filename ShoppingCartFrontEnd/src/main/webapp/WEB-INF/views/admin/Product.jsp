@@ -150,9 +150,11 @@
 					<thead>
 						<tr>
 							<th>ID</th>
+							<th>&#160;</th>
 							<th>Name</th>
 							<th>Description</th>
 							<th>Price</th>
+							<th>Quantity</th>
 							<th>Category</th>
 							<th>Supplier</th>
 							<th>Edit</th>
@@ -165,9 +167,11 @@
 
 						<tr>
 							<td>${product.id}</td>
+							<td><img src="resources/images/${product.id}.jpg" height="50" width="50"/></td>
 							<td>${product.name}</td>
 							<td>${product.description}</td>
 							<td>${product.price}</td>
+							<td align="center">${product.quantity}</td>
 							<td>${product.category.name}</td>
 							<td>${product.supplier.name}</td>
 							
@@ -181,7 +185,7 @@
 							</a></td>
 						</tr>
 
-					</c:forEach>
+					</c:forEach> 
 
 				</table>
 

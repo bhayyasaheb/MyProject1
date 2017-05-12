@@ -126,7 +126,7 @@ public class ProductTestCase {
 		productDAO = (ProductDAO) context.getBean("productDAO");
 	}
 	
-	//@Test
+	@Test
 	public void createProductTestCase(){
 		
 		product.setId("P312");
